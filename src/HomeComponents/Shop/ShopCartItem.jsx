@@ -26,13 +26,12 @@ const ShopCartItem = (props) => {
 
     return ( 
         <tr>
-            <td className="col-md-6">
+            <td className="col-md-6 col-12">
             <div className="media">
         <Link className="thumbnail pull-left" to={`/product_details/${product._id}`}> <img className="media-object" alt={product.name} src={product.image.url} style={{width: "100px", height: "100px"}}/> </Link>
                 <div className="media-body">
                     <h4 className="media-heading"><Link to={`/product_details/${product._id}`}>{product.name}</Link></h4>
             <h5 className="media-heading"> by <Link to={`/products/${product.brand}/1`}>{product.brand}</Link></h5>
-            <span>Status: </span><span className="text-warning"><strong>Leaves warehouse in 2 - 3 weeks</strong></span>
                 </div>
             </div></td>
             <td className="col-md-1" style={{textAlign: "center"}}>

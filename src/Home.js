@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from '../src/HomeComponents/Header/Header';
 import Main from '../src/HomeComponents/Main/Main';
-import { Route,Redirect } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Contact from '../src/HomeComponents/Contact-Us/Contact';
 import About from '../src/HomeComponents/About/About';
 import Food_Recipes from '../src/HomeComponents/Food&Recipes/Food&Recipes';
@@ -14,6 +14,9 @@ import Brand from './HomeComponents/Shop/Brand';
 import ShopCart from './HomeComponents/Shop/ShopCart';
 import ProductsDetails from './HomeComponents/Shop/Product_Details';
 import Checkout from './HomeComponents/Shop/Checkout'
+import forgetpassword from './Components/resetPassword/ForgetPassword';
+import ResetPassword from './Components/resetPassword/ForgetPassword'
+import Password from './Components/resetPassword/Password';
 function Home() {
     return ( <div>
         <Header/>
@@ -29,7 +32,7 @@ function Home() {
         <Route exact path = '/shop-cart' component = { ShopCart }/> 
         <Route exact path = '/checkout' component = { Checkout }/> 
         <Route exact path = '/product_details/:id' component = { ProductsDetails } /> 
-        <Redirect to='/'></Redirect>
+        <Route exact path="/forget_password" component={Password}/>
         </div>
 
 

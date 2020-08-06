@@ -16,7 +16,8 @@ export default function ChangePassword(props)  {
 
   function onChangePassword ({target}){
     setPassword({value:target.value,msg:"",err:false})
-
+    setErr(false)
+    setSuccess(false)
   }
 
   function onChangeNewPassword ({target}){
@@ -72,13 +73,16 @@ export default function ChangePassword(props)  {
        <NavBar toggle={toggle} isOpen={isOpen }/>
        <div className='container-fluid'>
         <div className='jumbotron w-50 m-auto'>
-            <h3>Change Password</h3>
+            <h3 className='text-center text-primary'>Change Password</h3>
         <Form onSubmit={onSubmit}>
             <FormGroup>
                 Password:
                 <Input 
                 invalid={password.err} 
-                value={password.value} onChange={onChangePassword} placeholder='Current Password'>
+                value={password.value} 
+                required
+                type='password'
+                onChange={onChangePassword} placeholder='Current Password'>
                 </Input>
             </FormGroup>
             <FormGroup>
@@ -87,8 +91,10 @@ export default function ChangePassword(props)  {
                     invalid={new_password.err}
                     onChange={onChangeNewPassword}
                     placeholder='New Password'
+                    required
+                    type='password'
                 ></Input>
-                {new_password.err&&<span>{new_password.msg}</span>}
+                {new_password.err&&<span className='text-center text-danger'>{new_password.msg}</span>}
             </FormGroup>
             <FormGroup>
             
@@ -96,8 +102,8 @@ export default function ChangePassword(props)  {
             </FormGroup>
         </Form>
 
-        {err&&<span className='text-danger'>Invalid Password</span>}
-        {sucess&&<span className='text-success'>Successfully Updated</span>}
+        {err&&<span className='text-danger text-center'>Invalid Password</span>}
+        {sucess&&<span className='text-success text-center'>Successfully Updated</span>}
         </div>
 
 

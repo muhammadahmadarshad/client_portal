@@ -9,7 +9,7 @@ export default function Product(props)  {
             <div className='p-5 product-item'>
 
 
-            
+     <Link className='text-decoration-none'  to={`/product_details/${props.product._id}`}>
     <Card className='p-0 text-center  shadow-sm '> 
         <CardImg  src={props.product.image.url}></CardImg>
         <CardBody>
@@ -20,11 +20,12 @@ export default function Product(props)  {
         <CardSubtitle>
             {props.product.description}
         </CardSubtitle>
-        <Link to={`/product_details/${props.product._id}`} className='btn text-white btn-primary btn-block'>Details</Link>
-        <span className='text-center text-danger'>{props.product.qty===0?'Out of Stock':''}</span>
+        {props.product.qty===0? <span className='text-center text-danger'>{'Out of Stock'}</span>
+        :''
+             }
         </CardBody>
         
     </Card>
-
+    </Link>       
     </div>
     )}

@@ -60,6 +60,7 @@ function Login(props) {
                     
                 </Form>
                 <div className="text-center">If you dont have an account? <Link to="/signup"> Sign Up</Link> </div>
+                <div className="text-center"> <Link to="/forget_password">If you have forgot password?</Link> </div>
 
             </div>
         </div>

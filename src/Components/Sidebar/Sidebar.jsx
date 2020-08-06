@@ -31,7 +31,7 @@ export default class Sidebar extends Component {
 
         </NavItem>
         <NavItem>
-        <NavLink className='text-white' tag={Link} to={'/queries'}>
+        <NavLink className='text-white' tag={Link} to={'/queries/1'}>
             <DashboardOutlined/> Queries
             </NavLink>
         </NavItem>

@@ -27,19 +27,22 @@ export default function Products(props)  {
 
    },[page])
 
+   if (loading){
 
+    return <Loading/>
+   }
   
     return (
         <div >  
             <h1 className='text-center text-primary'>All Products</h1>
        <div className='container m-auto'>
 
-       {loading?<Loading/>:
+       {
             data.products.length?<div>
             <div className='row'>
            {data.products.map((item,index)=>{
 
-            return <div className='col-md-4 col-sm-6 col-12'><Product key={index} product={item}/></div>
+            return <div key={index}  className='col-md-3 col-sm-6 col-12'><Product product={item}/></div>
            })}
            </div>
            <div className='mt-5'>

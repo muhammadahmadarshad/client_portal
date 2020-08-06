@@ -2,6 +2,8 @@ import React from 'react'
 import { useAuth } from '../../auth';
 import ShopCartItem from './ShopCartItem';
 import {Link} from 'react-router-dom'
+import { Table } from 'reactstrap';
+
 
 const ShopCart = () => {
     const {state}=useAuth()
@@ -16,10 +18,10 @@ const ShopCart = () => {
     }
 
     return (  <div className='m-auto '>
-        <div className="mt-2 container">
+        <div className="mt-2 w-100 container-fluid">
     <div className="row">
-        <div className="col-sm-12 col-md-10 col-md-offset-1">
-            <table className="table table-hover">
+        <div className="col-12 col-md-12">
+            <Table className="table table-hover">
                 <thead>
                     <tr>
                         <th>Product</th>
@@ -59,7 +61,7 @@ const ShopCart = () => {
                     </Link>}</td>
                     </tr>
                 </tbody>
-            </table>
+            </Table>
         </div>
     </div>
 </div>

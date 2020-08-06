@@ -1,6 +1,6 @@
 import React from 'react'
 import './DetailsTable.css'
-import { Button, ButtonGroup } from 'reactstrap'
+import { Button, ButtonGroup, Table } from 'reactstrap'
 import { useAuth } from '../../auth'
 export default function DetailsTable(props){
     const {dispatch}=useAuth()
@@ -17,10 +17,10 @@ export default function DetailsTable(props){
     }
 
 
-    return(<div className='detail w-100'>
+    return(<div className='detail w-150'>
 
 
-            <table>
+            <Table striped>
             <thead>
             <tr>
                 <th>name</th>
@@ -34,7 +34,7 @@ export default function DetailsTable(props){
             </thead>    
             <tbody>
             <tr>
-            <td><img alt={image.url} src={image.url} width='100%' height='300'/></td>
+            <td><img alt={image.url} src={image.url} width='300' height='300'/></td>
             <td data-label='name'>{name}</td> 
             <td  data-label='price'>{price} $</td>
             <td data-label='status'>{qty>0?<span className='text-success'>Available</span>:<span className='text-danger'>Out of Stock</span>}</td>
@@ -47,7 +47,7 @@ export default function DetailsTable(props){
             
             </tr>    
             </tbody>        
-            </table>
+            </Table>
         
         
         </div>

@@ -7,8 +7,11 @@ import NavBar from '../Navbar/navbar';
 import Loading from '../Loading/Loading';
 import Axios from 'axios';
 import { Table } from 'reactstrap';
-import { Link } from 'react-router-dom';
+
 import moment from 'moment'
+
+import { useParams, Link } from 'react-router-dom';
+import Paginate from '../../HomeComponents/Shop/Paginate';
 
   
 
@@ -19,31 +22,36 @@ export default function Queries(props)  {
   const [loading,setLoading]=useState(true)
   const [data,setData]=useState([])
   const [err,setError]=useState(false) 
+
+
+  let {page}=useParams()
+
   let toggle=()=>{
       setOpen(!isOpen)
    }
 
+let getData=()=>{
+    setLoading(true)
+ 
+    Axios({method:'get',url:'http://localhost:5000/query/get_all_messages/'+page,headers:{'x-auth-token':localStorage.getItem('token')}})
+    .then(res=>{
+        console.log(res.data)
+        
+        setData(res.data)
+        setLoading(false)
+       
+        setError(false)
+    })
+    .catch((err)=>{
+        setError(true)
+        console.log(err.response)
+        setLoading(false)
 
-   useEffect(()=>{
-        setLoading(true)
-     
-        Axios({method:'get',url:'http://localhost:5000/query/get_all_messages/'+props.match.params.id,headers:{'x-auth-token':localStorage.getItem('token')}})
-        .then(res=>{
-            console.log(res.data)
-            
-            setData(res.data)
-            setLoading(false)
-           
-            setError(false)
-        })
-        .catch(()=>{
-            setError(true)
-            setLoading(false)
 
+    })
 
-        })
-
-   },[])
+}
+   useEffect(getData,[page])
 
 if(loading){
 
@@ -97,28 +105,32 @@ else if(err){
 
             <h1 className='text-center'>Query</h1>
 
-
         <Table striped>
 
             <thead className='bg-primary text-white'>
                 <tr>
-                    <th>Message</th>
+                    <th>Send To</th>
                     <th>Time</th>
-                    <th>Response</th>
+                    <th>Status</th>
+                    <th>Show Query</th>
                 </tr>
             </thead>
 
 
             <tbody>
                 {data.messages.map(item=>{
-                    let {response,query,createdAt,_id}=item
-                        console.log(item)
+                    let {createdAt,_id,nutritionist}=item
+                    let {first_name,last_name}=nutritionist
                     return(
                         <tr key={_id}>
-                            <td>{query}</td>
-                            <td>{moment(createdAt).calendar()}</td>
-                             <td>{response?response:"Pending"}</td>
-                        
+                            
+                            <td data-label='From'>{`${first_name} ${last_name}`}</td>
+                            <td data-label='Time'>{moment(createdAt).calendar()}</td>
+                            <td>{item.response?'Completed':'Pending'}</td>
+                            <td><Link to={`/query_detail/${_id}`} className='btn btn-primary'>
+                                Show
+                            </Link></td>
+                            
                         </tr>
 
                     )
@@ -126,7 +138,7 @@ else if(err){
                 
             </tbody>
         </Table>
-
+                <Paginate url={`/queries/`} match={props.match} history={props.history} total_results={data.total_results}></Paginate>
 
 
        </div>

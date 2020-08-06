@@ -42,10 +42,10 @@ const previous = () => {
 }
 
 
-const slides = items.map((item) => {
+const slides = items.map((item,index) => {
     return (
       <CarouselItem
-        key={item.id}
+        key={index}
         src={item.src}
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
@@ -200,7 +200,7 @@ const slides = items.map((item) => {
                         </div>
                         <div className="col-sm-4">
                             <div className="card" >
-                                <img src={`https://image.shutterstock.com/image-vector/balance-scales-weighing-calories-we-260nw-1091996300.jpg`} class="card-img-top" alt="..." />
+                                <img src={`https://image.shutterstock.com/image-vector/balance-scales-weighing-calories-we-260nw-1091996300.jpg`} className="card-img-top" alt="..." />
                                 <div className="card">
                                     <p >What 1,200 Calories looks like.</p>
                                     <a href="https://blog.myfitnesspal.com/1200-calories-looks-like-infographic/" className="text-danger stretched-link">Click here</a>

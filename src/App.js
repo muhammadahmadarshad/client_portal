@@ -62,8 +62,8 @@ function App() {
       <PrivateRoute exact path='/week_report' component={WeekReport}/>
       <PrivateRoute exact path='/change_password' component={ChangePassword}/>
       <PrivateRoute exact path='/nutritionists' component={Nutrionists}/>
-      <PrivateRoute exact path='/queries' component={Query}></PrivateRoute>
-      <PrivateRoute exact path='/conversation/:id' component={Queries}></PrivateRoute>
+      <PrivateRoute exact path='/query_detail/:id' component={Query}></PrivateRoute>
+      <PrivateRoute exact path='/queries/:page' component={Queries}></PrivateRoute>
       <PrivateRoute exact path='/nutritionist_details/:id' component={NutritionistDetails}/>
       
       <Home/>

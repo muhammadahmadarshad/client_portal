@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from '../Sidebar/Sidebar'
 import NavBar from '../Navbar/navbar'
 import classNames from 'classnames'
-import { Input, Label,Form,FormGroup,Button } from 'reactstrap';
+import { Input, Label,Form,FormGroup} from 'reactstrap';
 import {specialities} from './specialities'
 import { useState } from 'react';
 import Axios from 'axios';

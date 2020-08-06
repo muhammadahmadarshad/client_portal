@@ -40,11 +40,11 @@ export default function Dashboard(props)  {
        
        <NavBar toggle={toggle} isOpen={isOpen }/>
        <div className='container' >
-         <div className='d-flex content-justify-center'>
+         <div className='m-auto'>
 
       
         <div className='m-auto'>
-        <div className='row '>
+        <div className='row m-auto '>
 
         <div className='col-md-3 mt-4 col-6'>
           <Link className='btn ' style={{background:"#b80096",color:"#fff"}} to='/'>

@@ -7,6 +7,7 @@ import axios from 'axios'
 import MakeDietPlan from './MakeDietPlan'
 import DietPlanTable from './DietPlanTable';
 import { useParams } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 const DietPlan = (props) => {
     const [isOpen,setOpen]=React.useState(false)
@@ -99,6 +100,21 @@ const DietPlan = (props) => {
     let toggle= ()=>{
         setOpen(!isOpen)
      }
+     if(loading){
+
+        return ( <div className='App wrapper content'>
+        <Sidebar toggle={toggle} isOpen={isOpen}/>
+        <div className={classNames('content container-fluid',{'is-open':isOpen})}>
+        <NavBar toggle={toggle} isOpen={isOpen }/>
+        <div className='container' >
+            <Loading></Loading>
+            
+        </div> 
+            </div>
+            </div>       
+    )}
+
+
     return ( <div className='App wrapper content'>
     <Sidebar toggle={toggle} isOpen={isOpen}/>
     <div className={classNames('content container-fluid',{'is-open':isOpen})}>

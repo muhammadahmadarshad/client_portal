@@ -47,7 +47,7 @@ function Header() {
                 }
             </nav>
             <Navbar className="text-dark" color='warning' expand="md">
-                    <NavbarToggler navbar onClick={toggle} />
+                    <NavbarToggler className='text-dark' navbar onClick={toggle} > <span className=' fa fa-lg fa-align-justify'></span> </NavbarToggler>
                     <Collapse isOpen={isOpen} navbar>
                     <Nav className='mr-auto' navbar>
                     <NavItem>

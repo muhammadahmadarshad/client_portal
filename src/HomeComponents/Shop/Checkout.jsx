@@ -4,7 +4,6 @@ import {useAuth} from '../../auth'
 import Loading from '../../Components/Loading/Loading'
 import StripeCheckout from 'react-stripe-checkout';
 import {Input,Modal,ModalHeader,ModalFooter,Button} from 'reactstrap'
-import {countryList} from '../../Components/Countries/countries'
 import axios from 'axios'
 
 export default function Checkout (props){
@@ -494,15 +493,7 @@ export default function Checkout (props){
     </div>
 
             
-           
-    <footer className="my-5 pt-5 text-muted text-center text-small">
-      <p className="mb-1">© 2017-2018 Company Name</p>
-      <ul className="list-inline">
-        <li className="list-inline-item"><a href="https://getbootstrap.com/docs/4.0/examples/checkout/#">Privacy</a></li>
-        <li className="list-inline-item"><a href="https://getbootstrap.com/docs/4.0/examples/checkout/#">Terms</a></li>
-        <li className="list-inline-item"><a href="https://getbootstrap.com/docs/4.0/examples/checkout/#">Support</a></li>
-      </ul>
-    </footer>
+          
   </div>
 
     );

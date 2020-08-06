@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal,ModalBody,ModalFooter,Button,ModalHeader, Form,Input, FormGroup, Label} from 'reactstrap'
+import {Modal,ModalBody,ModalFooter,Button,ModalHeader, Form,Input} from 'reactstrap'
 
 import { useState } from 'react'
 import Axios from 'axios'
@@ -20,11 +20,11 @@ const BuyDietPlan = (props) => {
         phone:""
     })
 
-    console.log(form)
     let [resp,setResp]=useState({success:false,msg:''})
     function onchange(e){
     let {name,value}=e.target
       setForm({...form,[name]:value})
+      setResp({success:false,msg:""})
     }
 
     function onSubmit(e){
@@ -38,7 +38,7 @@ const BuyDietPlan = (props) => {
             nutri_id:nutri_data._id,
             phone:form.phone
         }
-        console.log(data)
+
       Axios({method:"post",url:'http://localhost:5000/diet_plan_order/make_new_order',headers:{'x-auth-token':localStorage.getItem('token')},
         data
        
@@ -52,7 +52,7 @@ const BuyDietPlan = (props) => {
     })
     .catch(err=>{
 
-    console.log(err)
+    setResp(err.response.data)
     })
 
     }
