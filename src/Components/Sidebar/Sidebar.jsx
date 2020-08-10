@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import {Link} from 'react-router-dom'
 import SubMenu from './Submenu'
 import {HomeOutlined,DashboardOutlined,FavoriteOutlined,
-  DescriptionOutlined, PollOutlined, TodayOutlined, Description, FastfoodOutlined, SearchOutlined,PeopleAltOutlined} from '@material-ui/icons'
+  DescriptionOutlined, PollOutlined, TodayOutlined, Description, FastfoodOutlined, SearchOutlined,PeopleAltOutlined,MessageOutlined} from '@material-ui/icons'
 export default class Sidebar extends Component {
   render() {
     return (
@@ -24,22 +24,23 @@ export default class Sidebar extends Component {
             </NavLink>
 
 
-
+ 
 
 
 
 
         </NavItem>
         <NavItem>
-        <NavLink className='text-white' tag={Link} to={'/queries/1'}>
-            <DashboardOutlined/> Queries
-            </NavLink>
-        </NavItem>
-          <NavItem>
           <NavLink className='text-white' tag={Link} to={'/'}>
            <HomeOutlined/> Home
             </NavLink>
           </NavItem>
+        <NavItem>
+        <NavLink className='text-white' tag={Link} to={'/queries/1'}>
+            <MessageOutlined/> Queries
+            </NavLink>
+        </NavItem>
+ 
 
           <SubMenu title={<span><PollOutlined/>Reports</span>}  items={submenus[0]}/>
 
@@ -72,6 +73,11 @@ const submenus = [
       title: <span><PollOutlined/> Weekly Report</span>,
       target: "/week_report",        
     },
+    {
+      title: <span><PollOutlined/> Overall Report</span>,
+      target: "/complete_report",        
+    },
+
   ],
   [
     {
@@ -87,8 +93,11 @@ const submenus = [
       target:"/my_foods/1"
     }
   ],
-
-  [
+  
+  [{
+    title:<span><DescriptionOutlined/>Diet Plan</span> ,
+    target: "/diet_plan_details/my_diet_plan", 
+  },
     {
       title: <span><TodayOutlined/> Today's Meals</span>,
       target: "/today_meals",        

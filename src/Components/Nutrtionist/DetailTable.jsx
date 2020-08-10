@@ -40,7 +40,7 @@ const DetailTable = (props) => {
                 </tr>
                 <tr>
                     <th>Diet Plan Fee</th>
-                    <td>{data.fee}</td>
+                    <td>{data.fee} $</td>
                 </tr>
                 <tr>
                     <th>Email</th>
@@ -76,7 +76,7 @@ const DetailTable = (props) => {
             </Table>
         </div>}
 
-        {data.experience.length>0&&<div className="mt-5" >
+        {data.experience&&<div className="mt-5" >
             <h1 className="text-center">Experience</h1>
 
             <Table striped bordered className="mt-3">
@@ -109,7 +109,7 @@ const DetailTable = (props) => {
 
 
         
-        {data.education.length>0&&<div className="mt-5">
+        {data.education&&<div className="mt-5">
             <h1 className="text-center">Education</h1>
 
             <Table striped bordered className="mt-3 mb-5">
@@ -141,11 +141,11 @@ const DetailTable = (props) => {
         </div>}
 
                         <div className="row">
-                            <div className="col-md-6" onClick={toggle}><Button block>Send Query
+                            <div className="col-md-6"  ><Button color='primary' onClick={toggle} block>Send Query
                                 </Button></div>
                             <div className="col-md-6">
 
-                                <Button onClick={buytoggle} block>Request For Diet Plan</Button>
+                                <Button onClick={buytoggle} color="success" block>Request For Diet Plan</Button>
                             </div>
                         </div>
 

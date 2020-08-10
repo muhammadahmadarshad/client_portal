@@ -30,17 +30,19 @@ export const reducer = (state, action) => {
                 else
                     return item;
             })
-
+            localStorage.setItem('cart',JSON.stringify(cart))
             return {...state, cart: cart }
         }
-        return {...state, cart: [...state.cart, action.payload] }
+        let cart=[...state.cart, action.payload]
+        localStorage.setItem('cart',JSON.stringify(cart))
+        return {...state, cart }
 
     } else if (action.type === 'remove_from_cart') {
 
         let cart = state.cart.filter(p => {
             return (action.payload._id !== p._id)
         })
-
+        localStorage.setItem('cart',JSON.stringify(cart))
         return ({...state, cart })
 
     } else if (action.type === 'update_qty') {
@@ -59,9 +61,12 @@ export const reducer = (state, action) => {
 
 
             })
+
+            localStorage.setItem('cart',JSON.stringify(cart))
             return {...state, cart: cart }
         } else {
             let cart = state.cart.filter(item => item._id !== action.payload._id)
+            localStorage.setItem('cart',JSON.stringify(cart))
             return {...state, cart: cart }
         }
 

@@ -11,7 +11,7 @@ import FoodDetail from './Components/Food/Food_Detail';
 import PrivateRoute  from './PrivateRoute'
 import Favorite_Food from './Components/Food/Favourite_Foods'
 import DietPlan from './Components/Diet_Plan/DietPlan'
-
+import CompleteReport from './Components/Reports/CompleteReport'
 import Home from './Home'
 import TodaysMeal from './Components/Diet_Plan/TodaysMeal';
 import TodayReport from './Components/Reports/Today_Report';
@@ -24,6 +24,7 @@ import Query from './Components/Queries/Query'
 import Queries from './Components/Queries/Queries';
 import { useAuth } from './auth';
 import Axios from 'axios';
+import DietPlanDetails from './Components/Diet_Plan/DietPlanDetails';
 function App() {
 
   const {dispatch}=useAuth()
@@ -65,6 +66,8 @@ function App() {
       <PrivateRoute exact path='/query_detail/:id' component={Query}></PrivateRoute>
       <PrivateRoute exact path='/queries/:page' component={Queries}></PrivateRoute>
       <PrivateRoute exact path='/nutritionist_details/:id' component={NutritionistDetails}/>
+      <PrivateRoute exact path='/diet_plan_details/:id' component={DietPlanDetails}/>
+      <PrivateRoute exact path='/complete_report' component={CompleteReport}/>
       
       <Home/>
       {!localStorage.getItem('token')?<Redirect to='/login'/>:<Redirect to='/'/>}

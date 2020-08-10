@@ -11,7 +11,8 @@ import {authContext} from './auth'
 import * as serviceWorker from './serviceWorker';
 function ClientPortal(props){
     const localtoken=localStorage.getItem('token')
-    const init={token:localtoken?localtoken:'',cart:[],me:{}}
+    const cart=JSON.parse( localStorage.getItem('cart'))
+    const init={token:localtoken?localtoken:'',cart:cart?cart:[],me:{}}
     const [state, dispatch] = useReducer(reducer,init);
     return(
         <authContext.Provider value={{state,dispatch}}>

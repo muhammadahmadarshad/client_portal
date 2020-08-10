@@ -2,7 +2,6 @@ import React from 'react';
 import Sidebar from '../Sidebar/Sidebar'
 import NavBar from '../Navbar/navbar'
 import classNames from 'classnames'
-import './Report.css'
 import {Bar,BarChart,XAxis,YAxis,Tooltip,Legend} from 'recharts'
 import { useEffect } from 'react';
 import Axios from 'axios';

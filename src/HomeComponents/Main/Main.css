@@ -40,17 +40,15 @@ hr{
     color: white;
     display: inline-block ;
 }
-.jumbotron{
-    background-color: black;
-}
+
 .para{
     color: white;
     text-align: center;
 
 }
+.hi{
 
-.h1{
-    color: white;
+    height: 100%;
 }
 p{
     text-align: center;

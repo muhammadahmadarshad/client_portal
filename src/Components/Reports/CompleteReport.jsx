@@ -7,22 +7,26 @@ import { useEffect } from 'react';
 import Axios from 'axios';
 import {Table} from 'reactstrap'
 import { useState } from 'react';
-const WeekReport = () => {
+import Loading from '../Loading/Loading';
+const CompleteReport = () => {
 
     const [isOpen,setOpen]=React.useState(false)
     const [data,setData]= useState([])
-  
+    const [loading,setLoading]=useState(true)
     let toggle=()=>{
         setOpen(!isOpen)
      }
      
      useEffect(()=>{
-        Axios({method:'get',url:'http://localhost:5000/diet_plan/report',
+         setLoading(true)
+        Axios({method:'get',url:'http://localhost:5000/diet_plan/complete_report',
         headers : {'x-auth-token':localStorage.getItem('token')}
      })
         .then(res=>{
-            setData(res.data.reverse())})
-
+            setData(res.data)
+            setLoading(false)
+        })
+            
      },[])
 
 
@@ -39,8 +43,8 @@ const WeekReport = () => {
                 <NavBar toggle={toggle} isOpen={isOpen }/>
 
 
-                <div className='container'>
-                    <h2 className='text-center text-primary bg-dark p-1'>Weekly Report</h2>
+               {!loading? <div className='container'>
+                    <h2 className='text-center text-primary bg-dark p-1'>Complete Report of Active Diet Plan</h2>
                     <div style={{overflowX:"auto"}}>
                     <BarChart className='m-auto' width={1200} height={300} data={data}  
                         margin={{
@@ -119,7 +123,7 @@ const WeekReport = () => {
 
 
                     </div>
-                </div>
+                </div>:<Loading/>}
     
             </div>
     
@@ -127,4 +131,4 @@ const WeekReport = () => {
      );
 }
  
-export default WeekReport;
+export default CompleteReport;

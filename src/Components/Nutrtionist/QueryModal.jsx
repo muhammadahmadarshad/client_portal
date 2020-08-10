@@ -21,12 +21,14 @@ const QueryModal = (props) => {
     function onSubmit(e){
 
       e.preventDefault()
+    
 
       Axios({method:'POST',url:"http://localhost:5000/query/sendMessage",data:{query,nutri_id:_id},headers:{'x-auth-token':localStorage.getItem('token')}}) 
       .then(res=>{
 
         setResp(res.data)
         setQuery('')
+        
       })
       .catch(
         (err)=>{

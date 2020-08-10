@@ -14,7 +14,7 @@ const Food_Search = (props) => {
   const [food,setFood]=useState({})
 
   const [loading,setLoading]=useState(true)
-
+  const [err,setErr]=useState(true)
   const [isOpen, setOpen] = useState(false);
   function onInputChange(e){
 
@@ -28,11 +28,12 @@ if(query!==undefined){
   .then((res)=>{  
     setFood(res.data.foods)
     setLoading(false)
-
+    setErr(false)
   })
   .catch(err=>{
     
-  console.log(err)
+  setErr(true)
+  setLoading(false)
   
   })
 
@@ -77,7 +78,7 @@ if(query!==undefined){
     <div className='container'>   
     {query&&
 
-<FoodItem loading={loading} food={food} match={props.match}  history={props.history}/>
+<FoodItem err={err} loading={loading} food={food} match={props.match}  history={props.history}/>
 
 
     }

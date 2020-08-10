@@ -3,7 +3,7 @@ import './Checkout.css'
 import {useAuth} from '../../auth'
 import Loading from '../../Components/Loading/Loading'
 import StripeCheckout from 'react-stripe-checkout';
-import {Input,Modal,ModalHeader,ModalFooter,Button} from 'reactstrap'
+import {Input,Modal,ModalHeader,ModalFooter,Button, Spinner} from 'reactstrap'
 import axios from 'axios'
 
 export default function Checkout (props){
@@ -24,6 +24,8 @@ export default function Checkout (props){
     const [phone,setPhone]=useState({value:'',invalid:false})
     const [postalCode,setPostalCode]=useState({value:'',invalid:false})
     const [paymentMethod,setPaymentMethod]=useState('')
+    const [place_order,setPlaceOrder]=useState(false)
+    const [err,setErr]=useState(false)
     const {cart}=state
     const [touched, settouched]=useState({firstname:false,lastname:false,email:false,phone:false,postalCode:false,
                                           billingAddress:false,shipingAddress:false,country:false,city:false})
@@ -116,19 +118,34 @@ export default function Checkout (props){
             total
         }
         if(paymentMethod==='Paid by Card'){
-          if(token!=='')
+          if(token!==''){
+          setPlaceOrder(true)
           axios({method:'post',data,url:'http://localhost:5000/orders/add_new_order'}).then(res=>{
           setMessage(res.data.success)
           toggle()
+          localStorage.setItem('cart','[]')
+          setPlaceOrder(false)
+          setErr(false)
+          }).catch(()=>{
+            setPlaceOrder(false)
+            setErr(true)
 
-          })
+          })}
         }
         else {
+          setPlaceOrder(true)
           axios({method:'post',data,url:'http://localhost:5000/orders/add_new_order'}).then(res=>{
 
             setMessage(res.data.success)
             toggle()
-  
+            localStorage.setItem('cart','[]')
+            setPlaceOrder(false)
+            setErr(false)
+          })
+          .catch(()=>{
+            setPlaceOrder(false)
+            setErr(true)
+
           })
 
 
@@ -258,7 +275,7 @@ export default function Checkout (props){
       shipingAddress.value, billingAddress.value, country.value, city.value, phone.value, postalCode.value)
     return (
         
-    <div className="container">
+    <div className="container mb-5">
 
 <Modal backdrop='static' isOpen={modal} toggle={toggle} >
     <ModalHeader >
@@ -460,12 +477,12 @@ export default function Checkout (props){
 
 
           {(paymentMethod==='Paid by Card'&&token!=='')&&
-          <button className="btn mt-2 btn-primary btn-lg btn-block" type="submit">Place Order</button>
+          <button className="btn mt-2 btn-primary btn-lg btn-block" type="submit">{place_order?<Spinner/>:'Place Order'}</button>
           }
           
 
           {(paymentMethod==='Cash on Delivery')&&
-          <button className="btn mt-2 btn-primary btn-lg btn-block" type="submit">Place Order</button>
+          <button className="btn mt-2 btn-primary btn-lg btn-block" type="submit">{place_order?<Spinner/>:'Place Order'}</button>
           }
 
 
@@ -476,7 +493,6 @@ export default function Checkout (props){
           email={email.value}
           token={
             (token)=>{
-              console.log(token)
               setToken(token)
             }
           }
@@ -484,11 +500,11 @@ export default function Checkout (props){
           stripeKey="pk_test_FSCNJPbqw8vY8O6i25AxGk9V00kbuiaHOm"
           amount={total*100}
           >
-          
             <button className='btn btn-primary btn-lg btn-block'>Pay</button>
-
           </StripeCheckout>
             }
+
+            {err&&<h5 className="text-center text-danger">Order Failed</h5>}
       </div>
     </div>
 

@@ -4,13 +4,17 @@ import {Table} from 'reactstrap'
 import Loading from '../Loading/Loading'
 import Paginate from './Food-Pagination';
 
-const FoodItem = ({food,loading,match,history,}) => {
+const FoodItem = ({food,loading,match,history,err}) => {
     if(loading)
         return (
 
             <Loading></Loading>
         )
+else if(err){
 
+
+    return <h1 className="text-center text-danger">Not Found</h1>
+}
 
     else if(food.food){
 
