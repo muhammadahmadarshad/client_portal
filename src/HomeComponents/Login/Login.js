@@ -53,7 +53,7 @@ function Login(props) {
                     </div>
 
                     <div class="form-group">
-                    <button type="submit" className="btn btn-block btn-warning btn-lg">{loading?<Spinner/>:"Login"}</button>
+                    <button disabled={loading} type="submit" className="btn btn-block btn-warning btn-lg">{loading?<Spinner/>:"Login"}</button>
                     </div>
                     {err.error&&
                     <div class="form-group">

@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import './Signup.css'
 import { Link } from 'react-router-dom'
-import {Form,Input, Label} from 'reactstrap'
+import {Form,Input, Label, Spinner} from 'reactstrap'
 import {countryList} from '../../Components/Countries/countries'
 import axios from 'axios'
 import {useAuth} from '../../auth'
@@ -19,6 +19,7 @@ function Signup(props) {
     const [Address,setAddress] = useState({address:"",err:false,msg:''})
     const [DOB,setDOB] = useState({dob:"",err:false,msg:''})
     const [Gender,setGender]=useState({gender:"",err:false,msg:''})
+    const [loading,setLoading]=useState(false)
     const {dispatch}=useAuth()
 
     function onChangeFirstName({target}){
@@ -193,6 +194,7 @@ function Signup(props) {
         }
 
         if(data.password===Ret_type.password){
+        setLoading(true)
         axios({
 
             method:'POST',
@@ -201,11 +203,12 @@ function Signup(props) {
         }).then(res=>{
             dispatch({type:'set_token',payload:res.data.token})
             localStorage.setItem('token',res.data.token)
+            setLoading(false)
             props.history.push('/dashboard')
         })
         .catch(err=>{
             const {data}= err.response
-            console.log(data)
+            setLoading(false)
             showError(data)
 
         })
@@ -343,7 +346,7 @@ function Signup(props) {
                     <div >
                     
                     <div class="row mt-3">
-                        <div className='col-sm-12'><button type="submit" className="btn btn-warning btn-lg btn-block">Register Now</button>
+                        <div className='col-sm-12'><button disabled={loading} type="submit" className="btn btn-warning btn-lg btn-block">{!loading?'Register Now':<Spinner/>}</button>
                         <div className="text-right">Already have an account? <Link to="/login">Sign in</Link></div>
                    
                     </div>

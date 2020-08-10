@@ -482,7 +482,7 @@ export default function Checkout (props){
           
 
           {(paymentMethod==='Cash on Delivery')&&
-          <button className="btn mt-2 btn-primary btn-lg btn-block" type="submit">{place_order?<Spinner/>:'Place Order'}</button>
+          <button disabled={place_order} className="btn mt-2 btn-primary btn-lg btn-block" type="submit">{place_order?<Spinner/>:'Place Order'}</button>
           }
 
 
