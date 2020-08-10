@@ -1,10 +1,10 @@
 import React from 'react'
-import {Form,Input} from 'reactstrap'
+import {Form,Input, Spinner} from 'reactstrap'
 import Loading from '../Loading/Loading'
 
 const MakeDietPlan = (props) => {
 
-    let {title,start_date,loading,onSubmit,duration,onChangeDuration,onChangeTitle,onChangeStartDate}= props
+    let {title,start_date,loading,onSubmit,duration,onChangeDuration,onChangeTitle,onChangeStartDate,save}= props
 
     if(loading){
 
@@ -49,7 +49,7 @@ const MakeDietPlan = (props) => {
           <div className='form-group'>
               <div className='row'>
                   <div className='col-md-12'>
-                      <Input title='Make Diet Plan' className='btn btn-success btn-block' type='Submit'/>
+        <button  className='btn btn-success btn-block' type='Submit'>{save?<Spinner/>:'Make Diet Plan'}</button>
                   <span></span>
                   </div>
               </div>

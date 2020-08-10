@@ -20,7 +20,7 @@ const DetailTable = (props) => {
     return ( <div className="mt-5">
             <QueryModal name= {`${data.first_name} ${data.last_name}` } _id={data._id} toggle={toggle} modal={modal}></QueryModal>
             <BuyDietPlan name= {`${data.first_name} ${data.last_name}`}  data={data} get={props.get} toggle={buytoggle} modal={buymodal}></BuyDietPlan>
-    <h1 className="text-c   enter text-primary">{`Nutritionist's Profile`}</h1>
+    <h1 className="text-center text-primary">{`Nutritionist's Profile`}</h1>
        <Table bordered hover className="mt-3">
 
             <tbody>

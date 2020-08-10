@@ -17,18 +17,22 @@ const ShopCart = () => {
 
     }
 
-    return (  <div className='m-auto '>
-        <div className="mt-2 w-100 container-fluid">
-    <div className="row">
-        <div className="col-12 col-md-12">
-            <Table className="table table-hover">
+    return (  <div className='container mt-5' >
+
+        <h1 className="text-center text-primary">Shop Cart</h1>
+        <hr/>
+        <div className="w-100">
+
+            <Table hover>
                 <thead>
                     <tr>
-                        <th>Product</th>
+                      
+                        <th >Product</th>
                         <th>Quantity</th>
                         <th className="text-center">Price</th>
                         <th className="text-center">Total</th>
                         <th> </th>
+                     
                     </tr>
                 </thead>
                 <tbody>
@@ -41,30 +45,28 @@ const ShopCart = () => {
                         })}
 
                     <tr>
+                        <td><h3>Total</h3>   </td>
                         <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h3>Total</h3></td>
-                    <td className="text-right"><h3><strong>${count}</strong></h3></td>
+                        
+                        <td></td>
+                    <td className=""><h3><strong>${count}</strong></h3></td>
+                    <td></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td>
-                        <button type="button" className="btn btn-default">
-                            <span className="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
+                        
+                       
                         <td>
                         {state.cart.length>0&&<Link to='/checkout' type="button" className="btn btn-success">
                             Checkout <span className="glyphicon glyphicon-play"></span>
                     </Link>}</td>
+                    <td>   </td>
                     </tr>
                 </tbody>
             </Table>
         </div>
-    </div>
-</div>
     </div>);
 }
  

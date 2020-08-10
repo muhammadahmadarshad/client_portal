@@ -27,7 +27,7 @@ export default function SearchedProducts({total_results,products,match,history,u
 
             </div>
                 <div className='mt-5'>
-                    <Paginate match={match} history={history} total_results={total_results} url={url}/>
+                    <Paginate match={match} count={12} history={history} total_results={total_results} url={url}/>
                 </div>
                 
 

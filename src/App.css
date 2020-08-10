@@ -19,7 +19,7 @@ body {
 }
 
 table {
-  border: 1px solid #ccc;
+ 
   border-collapse: collapse;
   margin: 0;
   padding: 0;
@@ -40,7 +40,7 @@ table tr {
 table th,
 table td {
   
-  padding: .625em;
+  padding: 0;
   text-align: center;
 }
 
@@ -211,7 +211,7 @@ border-top-right-radius: 70px;
 
 @media only screen and (max-width: 400px) {
     body {
-      overflow:  scroll;
+      overflow-y:  scroll;
       
     }
     

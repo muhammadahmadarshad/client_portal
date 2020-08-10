@@ -1,11 +1,10 @@
 import React from 'react';
 import Pagination from 'react-js-pagination';
 
- const Paginate = ({total_results,match,history,url}) => {
+ const Paginate = ({total_results,match,history,url,count}) => {
   const {page}=match.params
   const {push}=history
   
-
   function onPageChange(number){
 
     push(url+number)
@@ -20,7 +19,7 @@ import Pagination from 'react-js-pagination';
         totalItemsCount={total_results}
         activePage={parseInt(page)}
         pageRangeDisplayed={5}
-        itemsCountPerPage={12}
+        itemsCountPerPage={count}
         onChange={onPageChange}
         itemClass='page-item'
         linkClass='page-link'

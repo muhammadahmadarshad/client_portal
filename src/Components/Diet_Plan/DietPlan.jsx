@@ -16,6 +16,7 @@ const DietPlan = (props) => {
     const [duration,setDuration]=React.useState({value:'',err:false,msg:""})
     const [plan,setDietPlan]= React.useState()
     const [loading,setLoading]= React.useState(false)
+    const [save,setSave]= React.useState(false)
 
     const {page}=useParams()
     function onChangeTitle(e){
@@ -65,6 +66,7 @@ const DietPlan = (props) => {
 
     function onSubmit(e){
         e.preventDefault();
+        setSave(true)
         axios({url:'http://localhost:5000/diet_plan/make_diet_plan',
             method:'post',
             data:{start_date:new Date(start_date.value),title:title.value,duration:duration.value},
@@ -72,8 +74,9 @@ const DietPlan = (props) => {
         }).then(res=>{
 
             getDietPlan()
+            setSave(false)
         }).catch(err=>{
-            console.log(err.response)
+            setSave(false)
            let {data}=err.response
     
             if (!data['path']){
@@ -121,7 +124,7 @@ const DietPlan = (props) => {
     <NavBar toggle={toggle} isOpen={isOpen }/>
     <div className='container' >
      {!plan?
-        <MakeDietPlan title={title} loading={loading} start_date={start_date} onSubmit={onSubmit} duration={duration} onChangeDuration={onChangeDuration} onChangeTitle={onChangeTitle} onChangeStartDate={onChangeStartDate} />    
+        <MakeDietPlan save={save} title={title} loading={loading} start_date={start_date} onSubmit={onSubmit} duration={duration} onChangeDuration={onChangeDuration} onChangeTitle={onChangeTitle} onChangeStartDate={onChangeStartDate} />    
         :
         <div className='m-auto' >
             <h1 className='text-center'>Diet Plan</h1>

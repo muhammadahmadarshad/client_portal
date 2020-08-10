@@ -25,16 +25,17 @@ const ShopCartItem = (props) => {
 
 
     return ( 
-        <tr>
-            <td className="col-md-6 col-12">
-            <div className="media">
-        <Link className="thumbnail pull-left" to={`/product_details/${product._id}`}> <img className="media-object" alt={product.name} src={product.image.url} style={{width: "100px", height: "100px"}}/> </Link>
-                <div className="media-body">
-                    <h4 className="media-heading"><Link to={`/product_details/${product._id}`}>{product.name}</Link></h4>
-            <h5 className="media-heading"> by <Link to={`/products/${product.brand}/1`}>{product.brand}</Link></h5>
+        <tr className='text-center '>
+          
+            <td >
+            <Link  to={`/product_details/${product._id}`}> <img className="media-object" alt={product.name} src={product.image.url} style={{width: "50", height: "20%"}}/> </Link>
+            <div>
+                <div >
+                    <h4 ><Link to={`/product_details/${product._id}`}>{product.name}</Link></h4>
+            <h5 > by <Link to={`/products/${product.brand}/1`}>{product.brand}</Link></h5>
                 </div>
             </div></td>
-            <td className="col-md-1" style={{textAlign: "center"}}>
+            <td  style={{textAlign: "center"}}>
    
         <div>
         <span onClick={QtyDecrement} className='btn btn-sm btn-danger fa fa-minus'> </span>
@@ -45,15 +46,16 @@ const ShopCartItem = (props) => {
    
     
             </td>
-            <td className="col-md-1 text-center"><strong>${product.price}</strong></td>
-            <td className="col-md-1 text-center"><strong>${product.price}</strong></td>
-            <td className="col-md-1">
+            <td className="text-center"><strong>${product.price}</strong></td>
+            <td className=" text-center"><strong>${product.price}</strong></td>
+            <td className="">
             <button onClick={()=>{
 
                 dispatch({type:"remove_from_cart",payload:product})
             }} type="button" className="btn btn-danger">
                 <span className="fa fa-trash"></span>
             </button></td>
+
         </tr> );
 }
  

@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import './login.css'
 import { Link } from 'react-router-dom'
-import {Input,Form} from 'reactstrap'
+import {Input,Form, Spinner} from 'reactstrap'
 import axios from 'axios'
 import {useAuth} from '../../auth'
 function Login(props) {
@@ -10,6 +10,7 @@ function Login(props) {
     const [email,setEmail] = useState('')
     const [password,setPassword] =useState('')
     const [err,setErr]=useState({msg:"",error:false})
+    const [loading,setLoading]=useState(false)
     const onChangeEmail=(e)=>{
         setEmail(e.target.value)
     }
@@ -21,7 +22,8 @@ function Login(props) {
     const onLogin=(e)=>{
 
         e.preventDefault()
-    
+        setLoading(false)
+        setLoading(true)
         axios({url:"http://localhost:5000/login",method:'post',data:{email,password}}).then((res)=>{
         console.log(res.data)
         dispatch({type:'set_token',payload:res.data.token})
@@ -29,9 +31,9 @@ function Login(props) {
         localStorage.setItem('token',res.data.token)
         props.history.push('/dashboard')
         }).catch(err=>{
-            console.log(err.response)
+            
             setErr({msg:err.response.data.msg,error:true})
-
+            setLoading(false)
 
         })
     
@@ -44,14 +46,14 @@ function Login(props) {
                 <Form onSubmit={onLogin} >
                     <h2>Log In</h2>
                     <div class="form-group">
-                        <Input type="email" invalid={err.error} name="username"  placeholder="Username" value={email} onChange={onChangeEmail} />
+                        <Input type="email" invalid={err.error} name="username"  placeholder="Email Address" value={email} onChange={onChangeEmail} />
                     </div>
                     <div class="form-group">
                         <Input type="password" invalid={err.error} name="password" placeholder="Password" value={password}  onChange={onChangePassword} />
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" className="btn btn-block btn-warning btn-lg">Log In</button>
+                    <button type="submit" className="btn btn-block btn-warning btn-lg">{loading?<Spinner/>:"Login"}</button>
                     </div>
                     {err.error&&
                     <div class="form-group">

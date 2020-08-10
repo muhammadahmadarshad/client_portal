@@ -46,7 +46,7 @@ export default function Products(props)  {
            })}
            </div>
            <div className='mt-5'>
-            <Paginate match={props.match} url={`/all_products/`} history={props.history} total_results={data.total_results}/>
+            <Paginate match={props.match} url={`/all_products/`} count={8} history={props.history} total_results={data.total_results}/>
           </div> </div>:<div>
 
             <h1 className='text-center text-danger'>Not Found</h1>

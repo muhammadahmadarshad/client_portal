@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal,ModalBody,ModalFooter,Button,ModalHeader, Form,Input} from 'reactstrap'
+import {Modal,ModalBody,ModalFooter,Button,ModalHeader, Form,Input, Spinner} from 'reactstrap'
 
 import { useState } from 'react'
 import Axios from 'axios'
@@ -13,6 +13,7 @@ const BuyDietPlan = (props) => {
 
     let {modal,toggle,name} =props 
     let nutri_data= props.data
+    var [loading,setLoading]=useState(false)
     let {state}=useAuth()
     let [form,setForm]=useState({
         purpose:'',description:'',
@@ -39,20 +40,25 @@ const BuyDietPlan = (props) => {
             phone:form.phone
         }
 
+        setLoading(true)
       Axios({method:"post",url:'http://localhost:5000/diet_plan_order/make_new_order',headers:{'x-auth-token':localStorage.getItem('token')},
         data
        
     })
 
     .then(res=>{
-
-       props.get()
-
-
+        setLoading(false)
+        setForm({
+            purpose:'',description:'',
+            token:'',
+            phone:""
+        })
+        props.get()
     })
     .catch(err=>{
-
+    setForm({...form,token:''})
     setResp(err.response.data)
+    setLoading(false)
     })
 
     }
@@ -101,7 +107,7 @@ const BuyDietPlan = (props) => {
               <span className='text-success'> Payment Verifed.</span>
               <div className='row'>
                   <div className='col-md-12'>
-                      <Input value='Place Order' className='btn btn-success btn-block' type='Submit'/>
+    <button value='Place Order' className='btn btn-success btn-block' type='submit'>{!loading?'Place Order':<Spinner/>}</button>
                     <span className={resp.success?'text-success':'text-danger'}> {resp.msg}</span>
                   </div>
               </div>
@@ -116,7 +122,7 @@ const BuyDietPlan = (props) => {
               
                 token={
                         (token)=>{
-                            console.log(token)
+                            
                             setForm({...form,token})
                          }
                     }        
@@ -127,10 +133,7 @@ const BuyDietPlan = (props) => {
                 </StripeCheckout>
             </div>}
             </ModalBody>
-          <ModalFooter>
-
-
-          </ModalFooter>
+   
         </Modal>
       </div> );
 }

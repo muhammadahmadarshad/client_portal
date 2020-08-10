@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal,ModalBody,ModalFooter,ModalHeader, Form,Input, FormGroup, Label} from 'reactstrap'
+import {Modal,ModalBody,ModalFooter,ModalHeader, Form,Input, FormGroup, Label, Button, Spinner} from 'reactstrap'
 
 import { useState } from 'react'
 import Axios from 'axios'
@@ -13,6 +13,7 @@ const QueryModal = (props) => {
 
     let [query,setQuery]=useState('')
     let [resp,setResp]=useState({success:false,msg:''})
+    var [loading,setLoading]=useState(false)
     function onchange(e){
 
       setQuery(e.target.value)
@@ -22,17 +23,19 @@ const QueryModal = (props) => {
 
       e.preventDefault()
     
-
+      setLoading(true)
       Axios({method:'POST',url:"http://localhost:5000/query/sendMessage",data:{query,nutri_id:_id},headers:{'x-auth-token':localStorage.getItem('token')}}) 
       .then(res=>{
 
         setResp(res.data)
         setQuery('')
+        setLoading(false)
         
       })
       .catch(
         (err)=>{
           setResp(err.response.data)
+          setLoading(false)
         }
       )
 
@@ -57,7 +60,7 @@ const QueryModal = (props) => {
 
                 </FormGroup>
                 <FormGroup>
-                <Input className='btn-primary' type='submit' value='Send Query' ></Input>
+    <Button color='primary' block type='submit'  >{loading?<Spinner/>:'Send Query'}</Button>
                 </FormGroup>
                 <FormGroup>
                 <h4 className={resp.success?"text-success":'text-danger'}>{resp.msg}</h4>
@@ -71,3 +74,4 @@ const QueryModal = (props) => {
 }
  
 export default QueryModal;
+

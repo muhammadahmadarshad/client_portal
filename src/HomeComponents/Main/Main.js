@@ -4,7 +4,7 @@ import './Main.css'
 import { Link } from 'react-router-dom'
 import {Carousel,CarouselControl,CarouselItem} from 'reactstrap'
 import Footer from '../Footer/Footer'
-import Loading from '../../Components/Loading/Loading'
+
 import Axios from 'axios'
 import Product from '../Shop/Products-Item'
 
