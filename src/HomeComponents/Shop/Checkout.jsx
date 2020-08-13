@@ -315,8 +315,8 @@ export default function Checkout (props){
 
                 </div>
                 <div className='col-md-8 col-8'>
-                    <h6 className="my-0">{product.name}</h6>
-                  <small className="text-muted">{product.description}</small>
+                    <h6 className="my-0 p-2">{product.name}</h6>
+                 
                 </div>
 
 
@@ -404,7 +404,7 @@ export default function Checkout (props){
           </div>
 
           <div className="mb-3">
-            <label for="address2">Billing Address <span className="text-muted">(Optional)</span></label>
+            <label for="address2">Billing Address <span className="text-muted"></span></label>
             <Input type="text"id="address2" placeholder="Apartment or suite"  required 
                value={billingAddress.value}    valid={errors.billingAddress === ''}
                invalid={errors.billingAddress !== ''} onChange={onChangeBilling} onBlur={()=>{handleBlur('billingAddress')}}
