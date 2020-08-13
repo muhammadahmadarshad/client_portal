@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import {Input,Form, Spinner} from 'reactstrap'
 import axios from 'axios'
 import {useAuth} from '../../auth'
+import Header from '../Header/Header'
 function Login(props) {
 
     const {dispatch} = useAuth()
@@ -40,7 +41,8 @@ function Login(props) {
     
       }
     
-    return (
+    return (<div>
+        <Header/>
         <div className="login">
             <div class="login-form">
                 <Form onSubmit={onLogin} >
@@ -65,6 +67,7 @@ function Login(props) {
                 <div className="text-center"> <Link to="/forget_password">If you have forgot password?</Link> </div>
 
             </div>
+        </div>
         </div>
     )
 

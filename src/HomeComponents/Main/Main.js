@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import './Main.css'
-
+import Header from '../Header/Header'
 import { Link } from 'react-router-dom'
 import {Carousel,CarouselControl,CarouselItem} from 'reactstrap'
 import Footer from '../Footer/Footer'
@@ -103,6 +103,7 @@ const slides = items.map((item,index) => {
 
     return (
     <div >
+      <Header/>
     <Carousel 
     enableTouch={true}
       activeIndex={activeIndex}

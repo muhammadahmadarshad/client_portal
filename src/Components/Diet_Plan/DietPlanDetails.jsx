@@ -6,7 +6,7 @@ import NavBar from '../Navbar/navbar';
 import Loading from '../Loading/Loading';
 import { useParams, Link } from 'react-router-dom';
 import Axios from 'axios';
-import { Table } from 'reactstrap';
+import { Table, Button,Modal,ModalHeader,ModalFooter, Spinner, } from 'reactstrap';
 import moment from 'moment'
   
 
@@ -17,6 +17,15 @@ export default function DietPlanDetails(props)  {
   const [loading,setLoading]=useState(true)
   const [err,setErr]=useState(false)
   const [data,setData]=useState()
+  const [removing ,setremoving]=useState(false)
+
+  const [modal,setmodal]=useState(false)
+
+  let modal_toggle=()=>{
+
+    setmodal(!modal)
+
+  }
   let toggle=()=>{
       setOpen(!isOpen)
    }
@@ -40,6 +49,24 @@ export default function DietPlanDetails(props)  {
 
 
    },[id])
+
+const delete_plan=()=>{
+
+    setremoving(true)
+    Axios({method:'DELETE',url:`http://localhost:5000/diet_plan/plan_delete/${data._id}`,headers:{'x-auth-token':localStorage.getItem('token')}})
+    .then(res=>{
+       setremoving(false)
+        props.history.push('/dashboard')
+
+    })
+    .catch(err=>{
+        setremoving(false)
+    })
+
+
+}
+
+
 if(loading)
 {
     return (
@@ -97,11 +124,11 @@ else if(err){
        
        <NavBar toggle={toggle} isOpen={isOpen }/>
         
-        <div className='container'>
+        <div className='container '>
             <h3 className='text-primary' style={{textAlign:"center"}}>Diet Plan Details</h3>
             <hr/>
-            <div className='m-auto w-75 jumbotron'>
-            <Table striped >
+            <div>
+            <Table striped className='w-75 m-auto' >
 
                 <tbody>
                     <tr>
@@ -160,9 +187,20 @@ else if(err){
 
 
 
-            <div className="row">
-                <div className="col-md-12 col-12">
-                  <Link className='btn btn-primary btn-block' to={`/personal_diet/1`}>Show Diet Plan</Link>
+            <div className="row mt-5">
+                <div className="col-md-12 col-12 ">
+                  <Link className='btn btn-primary btn-block w-75 m-auto' to={`/personal_diet/1`}>Show Diet Plan</Link>
+                  <div className='mt-3'>
+                 <Button className='w-75 m-auto' color="danger" block  onClick={modal_toggle}>Delete Diet Plan</Button>
+      <Modal isOpen={modal} toggle={modal_toggle}  backdrop='static'   >
+        <ModalHeader toggle={modal_toggle} className='text-center'>Are You Sure?</ModalHeader>
+
+        <ModalFooter>
+          <Button color="primary" onClick={delete_plan}>{!removing?'Yes':<Spinner/>}</Button>{' '}
+          <Button color="secondary" onClick={modal_toggle}>No</Button>
+        </ModalFooter>
+      </Modal>
+    </div>
 
                 </div>
             </div>

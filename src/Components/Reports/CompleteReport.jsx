@@ -25,6 +25,11 @@ const CompleteReport = () => {
         .then(res=>{
             setData(res.data)
             setLoading(false)
+        }).catch(err=>{
+
+            setData([])
+            setLoading(false)
+
         })
             
      },[])

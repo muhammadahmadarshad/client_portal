@@ -3,6 +3,7 @@ import { useAuth } from '../../auth';
 import ShopCartItem from './ShopCartItem';
 import {Link} from 'react-router-dom'
 import { Table } from 'reactstrap';
+import Header from '../Header/Header';
 
 
 const ShopCart = () => {
@@ -17,7 +18,11 @@ const ShopCart = () => {
 
     }
 
-    return (  <div className='container mt-5' >
+    return ( <div>
+
+
+            <Header/>
+   <div className='container mt-5' >
 
         <h1 className="text-center text-primary">Shop Cart</h1>
         <hr/>
@@ -67,7 +72,7 @@ const ShopCart = () => {
                 </tbody>
             </Table>
         </div>
-    </div>);
+    </div> </div> );
 }
  
 export default ShopCart;

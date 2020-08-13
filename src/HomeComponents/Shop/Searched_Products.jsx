@@ -1,6 +1,7 @@
 import React from 'react'
 import Product from './Products-Item'
 import Paginate from './Paginate'
+
 export default function SearchedProducts({total_results,products,match,history,url}){
 
 
@@ -12,6 +13,7 @@ export default function SearchedProducts({total_results,products,match,history,u
 }    
 
         return (<div >
+           
             <div className='row'>
             {
                 products.map((item,index)=>{

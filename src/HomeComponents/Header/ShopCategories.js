@@ -4,7 +4,7 @@ export const categories=[
         {title: "Mass Gainner",target:'/products/mass gainner/1'},
         {title:"Fat Burner",target:"/products/fat burner/1"},
         {title:"Multivitamins",target:'/products/multivitamins/1'},
-        {title:"Pre Workout",target:'/products/pre workouts/1'},
+        {title:"Pre Workout",target:'/products/Pre Workout/1'},
         {title:"Post Workout",target:"/products/post workout/1"},
         {title:"Joint Support",target:"/products/joint support/1"}
 ] 

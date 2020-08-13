@@ -20,7 +20,7 @@ export default function DetailsTable(props){
     return(<div className='detail w-150'>
 
 
-            <Table striped>
+            <Table >
             <thead>
             <tr>
                 <th>name</th>
@@ -40,8 +40,12 @@ export default function DetailsTable(props){
             <td data-label='status'>{qty>0?<span className='text-success'>Available</span>:<span className='text-danger'>Out of Stock</span>}</td>
             <td data-label='brand'>{brand}</td>
             <td data-label='category'>{category}</td> 
-            <td data-label='facts'>{facts}</td>
-            <td data-label='description'>{description}</td>    
+            <td data-label='facts:'><p className='text-right p-3'>
+                <br/>
+                {facts}</p></td>
+            <td data-label='description:'><p className='text-center p-3'>
+                <br/>
+                {description}</p></td>    
             <td>{qty>0&&<ButtonGroup>
             <Button onClick={addToCart} color='success'>Add to Cart</Button></ButtonGroup>}</td>   
             

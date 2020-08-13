@@ -5,7 +5,7 @@ import Axios from 'axios';
 import Loading from '../../Components/Loading/Loading';
 import { useState } from 'react';
 import Paginate from './Paginate'
-
+import Header from '../Header/Header';
 export default function Products(props)  {
 
 
@@ -29,11 +29,17 @@ export default function Products(props)  {
 
    if (loading){
 
-    return <Loading/>
+    return <div>
+      
+          <Header/>
+      <Loading/>
+          </div>
+   
    }
   
     return (
         <div >  
+          <Header/>
             <h1 className='text-center text-primary'>All Products</h1>
        <div className='container m-auto'>
 

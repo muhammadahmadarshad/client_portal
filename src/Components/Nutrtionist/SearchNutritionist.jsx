@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from '../Sidebar/Sidebar'
 import NavBar from '../Navbar/navbar'
 import classNames from 'classnames'
-import { Input, Label,Form,FormGroup} from 'reactstrap';
+import { Input, Label,Form,FormGroup, InputGroup} from 'reactstrap';
 import {specialities} from './specialities'
 import { useState } from 'react';
 import Axios from 'axios';
@@ -52,18 +52,20 @@ function  onsubmit(e){
             <div className="jumbotron">
                 <Form onSubmit={onsubmit}>
                 <FormGroup>
+
                 <Label for='query'>Select Speciality</Label>
+                <InputGroup>
                 <Input type='select' value={query} id='query' onChange={onChange} required >
 
                     <option value=''>Select Speciality</option>
                     {
                         specialities.map((sp,i)=><option key={i} value={sp}>{sp}</option>)
-                    }
-                </Input>
+                    } 
+                </Input> 
+                <div class="input-group-append"><Input className='btn-primary btn' type='submit' title='Search'></Input></div>
+                </InputGroup >
                 </FormGroup>
-                    <FormGroup>
-                        <Input className='btn-primary' type='submit' value='Search'></Input>
-                    </FormGroup>
+        
                 </Form>
 
             </div>

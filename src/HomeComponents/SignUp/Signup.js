@@ -5,6 +5,7 @@ import {Form,Input, Label, Spinner} from 'reactstrap'
 import {countryList} from '../../Components/Countries/countries'
 import axios from 'axios'
 import {useAuth} from '../../auth'
+import Header from '../Header/Header'
 
 function Signup(props) {
     const [Firstname,setFirstName] = useState({firstname:"",err:false,msg:''}) 
@@ -217,7 +218,10 @@ function Signup(props) {
 
 
 
-    return (
+    return (<div>
+
+        <Header/>
+  
         <div className="signup">
             <div class="signup-form">
                 <Form onSubmit={onSubmit} >
@@ -357,7 +361,7 @@ function Signup(props) {
                 
 
             </div>
-        </div>
+        </div>  </div>
     )
 }
 

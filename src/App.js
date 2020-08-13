@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import Dashboard from './Components/Dashboard/Dashboard'
 
-import {BrowserRouter as Router,Redirect,Switch} from 'react-router-dom'
+import {BrowserRouter as Router,Redirect,Switch,Route} from 'react-router-dom'
 import './App.css'
 import SearchRecipe from './Components/Recipies/Search-Recipes';
 import Recipe_Details from './Components/Recipies/Recipe_Details';
@@ -25,9 +25,22 @@ import Queries from './Components/Queries/Queries';
 import { useAuth } from './auth';
 import Axios from 'axios';
 import DietPlanDetails from './Components/Diet_Plan/DietPlanDetails';
+import Main from '../src/HomeComponents/Main/Main';
+
+
+import Login from '../src/HomeComponents/Login/Login';
+import Signup from '../src/HomeComponents/SignUp/Signup';
+
+import Products from './HomeComponents/Shop/Products';
+import Brand from './HomeComponents/Shop/Brand';
+import ShopCart from './HomeComponents/Shop/ShopCart';
+import ProductsDetails from './HomeComponents/Shop/Product_Details';
+import Checkout from './HomeComponents/Shop/Checkout'
+import Password from './Components/resetPassword/Password';
+
 function App() {
 
-  const {dispatch}=useAuth()
+  const {dispatch,state}=useAuth()
   useEffect(()=>{
 
     Axios({method:'get', url:"http://localhost:5000/me", headers:{'x-auth-token':localStorage.getItem('token')}})
@@ -69,8 +82,20 @@ function App() {
       <PrivateRoute exact path='/diet_plan_details/:id' component={DietPlanDetails}/>
       <PrivateRoute exact path='/complete_report' component={CompleteReport}/>
       
-      <Home/>
-      {!localStorage.getItem('token')?<Redirect to='/login'/>:<Redirect to='/'/>}
+     
+      <Route exact path = "/"
+        component = { Main }/> 
+
+
+        <Route exact path = "/signup"component = { Signup }/> <Route exact path = "/login" component = { Login }/> 
+        <Route exact path = "/all_products/:page" component = { Products }/> 
+        <Route exact path = "/products/:query/:page" component = { Brand }/> 
+        <Route exact path = '/shop-cart' component = { ShopCart }/> 
+        <Route exact path = '/checkout' component = { Checkout }/> 
+        <Route exact path = '/product_details/:id' component = { ProductsDetails } /> 
+        <Route exact path="/forget_password" component={Password}/>
+        <Route exact path='/page-not-found' component={Home}/>
+        <Redirect to='/page-not-found'/>
     
       </Switch>
      

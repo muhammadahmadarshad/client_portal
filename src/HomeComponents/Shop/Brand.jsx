@@ -6,13 +6,14 @@ import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 import SearchedProducts from './Searched_Products'
 import Loading from '../../Components/Loading/Loading';
+import Header from '../Header/Header';
 export default function Brand(props)  {
   const {page,query}=useParams()
   const [products,setProducts]=useState({})
   const [loading,setLoading] = useState(true) 
   const [err,setError]=useState(false)
 
-  console.log(query,page)
+
   
   function get_products(){
     setError(false)
@@ -44,16 +45,23 @@ useEffect(get_products,[page,query])
   
   if(loading){
 
-      return <Loading/>
+      return <div>
+            <Header/>
+            <Loading/>
+        </div>
   }
   else if (err){
 
-    return <h1 className="text-danger text-center">Products Not Found</h1>
+    return <div>
+        <Header/>
+      
+        <h1 className="text-danger text-center">Products Not Found</h1>
+      </div>
   }
   else
     return (
         <div > 
-       
+            <Header/>
           <h3 className='text-center text-primary'>{query.toUpperCase()}</h3>
 
        <div >

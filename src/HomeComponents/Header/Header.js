@@ -76,6 +76,9 @@ function Header() {
                 </Nav>
              </NavbarText>
             </Navbar>
+
+
+            {localStorage.getItem('token')===undefined&&<h1 className='text-danger'>Page Not Found</h1>}
         </div>
     )
 }

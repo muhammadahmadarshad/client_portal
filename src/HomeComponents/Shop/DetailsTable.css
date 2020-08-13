@@ -19,13 +19,13 @@
     }
     
     .detail    table tr {
-      border-bottom: 3px solid #ddd;
+      border-bottom: 3px solid #fff;
       display: block;
       margin-bottom: .625em;
     }
     
     .detail    table td {
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #fff;
       display: block;
       font-size: 1em;
       text-align: right;

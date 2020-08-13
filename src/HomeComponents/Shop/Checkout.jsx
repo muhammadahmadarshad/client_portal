@@ -5,7 +5,7 @@ import Loading from '../../Components/Loading/Loading'
 import StripeCheckout from 'react-stripe-checkout';
 import {Input,Modal,ModalHeader,ModalFooter,Button, Spinner} from 'reactstrap'
 import axios from 'axios'
-
+import Header from '../Header/Header'
 export default function Checkout (props){
     const {state,dispatch}=useAuth() 
     const [modal, setModal] = useState(false);
@@ -249,11 +249,15 @@ export default function Checkout (props){
 
     if(loading){
 
-        return(<div className=' mt-5'>
+        return(<div>
+          <Header/>
+          <div className=' mt-5'>
             
             <Loading></Loading>
             
-            </div>)
+            </div>
+            </div>
+            )
     }
 
     else if(cart.length<=0){
@@ -261,6 +265,7 @@ export default function Checkout (props){
       return (
 
         <div className='text-center'>
+          <Header/>
           <h1 className='text-danger'>Cart is Empty</h1>
 
         </div>
@@ -274,7 +279,8 @@ export default function Checkout (props){
     const errors= validate(firstname.value, lastname.value, email.value,
       shipingAddress.value, billingAddress.value, country.value, city.value, phone.value, postalCode.value)
     return (
-        
+     <div>
+       <Header/> 
     <div className="container mb-5">
 
 <Modal backdrop='static' isOpen={modal} toggle={toggle} >
@@ -511,7 +517,7 @@ export default function Checkout (props){
             
           
   </div>
-
+   </div>         
     );
         }
   
